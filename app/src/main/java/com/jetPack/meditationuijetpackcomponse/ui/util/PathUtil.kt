@@ -9,12 +9,12 @@ import java.nio.file.Path
  */
 class PathUtil {
 
-    fun Path.standardQuadFromTo(from: Offset, to: Offset) {
+/*    fun Path.standardQuadFromTo(from: Offset, to: Offset) {
         quadraticBezierTo(
             from.x,
             from.y,
             abs(from.x + to.x) / 2f,
             abs(from.y + to.y) / 2f
         )
-    }
+    }*/
 }
