@@ -16,11 +16,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.jetPack.meditationuijetpackcomponse.ui.model.Feature
 import com.jetPack.meditationuijetpackcomponse.ui.theme.*
+import com.jetPack.meditationuijetpackcomponse.ui.util.standardQuadFromTo
 
 /**
  * Created by Aashis on 27,January,2023
@@ -146,4 +149,33 @@ fun FeatureSection(features: List<Feature>) {
 @Composable
 fun FeatureItem(feature: Feature) {
 
+    BoxWithConstraints(
+        modifier = Modifier
+            .padding(7.5.dp)
+            .aspectRatio(1f)
+            .clip(RoundedCornerShape(10.dp))
+            .background(feature.darkColor)
+    ) {
+        val width = constraints.maxWidth
+        val height = constraints.maxHeight
+
+        // Medium colored path
+        val mediumColoredPoint1 = Offset(0f, height * 0.3f)
+        val mediumColoredPoint2 = Offset(width * 0.1f, height * 0.35f)
+        val mediumColoredPoint3 = Offset(width * 0.4f, height * 0.05f)
+        val mediumColoredPoint4 = Offset(width * 0.75f, height * 0.7f)
+        val mediumColoredPoint5 = Offset(width * 1.4f, -height.toFloat())
+
+        val mediumColoredPath = Path().apply {
+            moveTo(mediumColoredPoint1.x, mediumColoredPoint1.y)
+            standardQuadFromTo(mediumColoredPoint1, mediumColoredPoint2)
+            standardQuadFromTo(mediumColoredPoint2, mediumColoredPoint3)
+            standardQuadFromTo(mediumColoredPoint3, mediumColoredPoint4)
+            standardQuadFromTo(mediumColoredPoint4, mediumColoredPoint5)
+            lineTo(width.toFloat() + 100f, height.toFloat() + 100f)
+            lineTo(-100f, height.toFloat() + 100f)
+            close()
+        }
+
+    }
 }
