@@ -1,5 +1,6 @@
 package com.jetPack.meditationuijetpackcomponse.ui
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,7 +21,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.jetPack.meditationuijetpackcomponse.ui.model.Feature
 import com.jetPack.meditationuijetpackcomponse.ui.theme.*
 import com.jetPack.meditationuijetpackcomponse.ui.util.standardQuadFromTo
@@ -29,6 +32,7 @@ import com.jetPack.meditationuijetpackcomponse.ui.util.standardQuadFromTo
  * Created by Aashis on 27,January,2023
  */
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen() {
     Box(
@@ -40,6 +44,38 @@ fun HomeScreen() {
             GreetingSection()
             ChipSection(chips = listOf("sweet slap", "Insomnia", "Depression"))
             CurrentMeditation()
+            FeatureSection(
+                features = listOf(
+                    Feature(
+                        title = "Sleep meditation",
+                        com.jetPack.meditationuijetpackcomponse.R.drawable.ic_headphones,
+                        BlueViolet1,
+                        BlueViolet2,
+                        BlueViolet3
+                    ),
+                    Feature(
+                        title = "Tips for sleeping",
+                        com.jetPack.meditationuijetpackcomponse.R.drawable.ic_headphones,
+                        LightGreen1,
+                        LightGreen2,
+                        LightGreen3
+                    ),
+                    Feature(
+                        title = "Night island",
+                        com.jetPack.meditationuijetpackcomponse.R.drawable.ic_headphones,
+                        OrangeYellow1,
+                        OrangeYellow2,
+                        OrangeYellow3
+                    ),
+                    Feature(
+                        title = "Calming sounds",
+                        com.jetPack.meditationuijetpackcomponse.R.drawable.ic_headphones,
+                        Beige1,
+                        Beige2,
+                        Beige3
+                    )
+                )
+            )
         }
     }
 }
@@ -177,5 +213,69 @@ fun FeatureItem(feature: Feature) {
             close()
         }
 
+        // Light colored path
+        val lightPoint1 = Offset(0f, height * 0.35f)
+        val lightPoint2 = Offset(width * 0.1f, height * 0.4f)
+        val lightPoint3 = Offset(width * 0.3f, height * 0.35f)
+        val lightPoint4 = Offset(width * 0.65f, height.toFloat())
+        val lightPoint5 = Offset(width * 1.4f, -height.toFloat() / 3f)
+
+        val lightColoredPath = Path().apply {
+            moveTo(lightPoint1.x, lightPoint1.y)
+            standardQuadFromTo(lightPoint1, lightPoint2)
+            standardQuadFromTo(lightPoint2, lightPoint3)
+            standardQuadFromTo(lightPoint3, lightPoint4)
+            standardQuadFromTo(lightPoint4, lightPoint5)
+            lineTo(width.toFloat() + 100f, height.toFloat() + 100f)
+            lineTo(-100f, height.toFloat() + 100f)
+            close()
+        }
+
+        Canvas(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            drawPath(
+                path = mediumColoredPath,
+                color = feature.mediumColor
+            )
+            drawPath(
+                path = lightColoredPath,
+                color = feature.lightColor
+            )
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(15.dp)
+        ) {
+            Text(
+                text = feature.title,
+                style = MaterialTheme.typography.h2,
+                lineHeight = 26.sp,
+                modifier = Modifier.align(Alignment.TopStart)
+            )
+            Icon(
+                painter = painterResource(id = feature.iconId),
+                contentDescription = feature.title,
+                tint = Color.White,
+                modifier = Modifier.align(Alignment.BottomStart)
+            )
+            Text(
+                text = "Start",
+                color = TextWhite,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .clickable {
+                        // Handle the click
+                    }
+                    .align(Alignment.BottomEnd)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(ButtonBlue)
+                    .padding(vertical = 6.dp, horizontal = 15.dp)
+            )
+        }
     }
 }
+
