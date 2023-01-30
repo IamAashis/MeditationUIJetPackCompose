@@ -192,7 +192,6 @@ fun FeatureSection(features: List<Feature>) {
 
 @Composable
 fun FeatureItem(feature: Feature) {
-
     BoxWithConstraints(
         modifier = Modifier
             .padding(7.5.dp)
