@@ -50,28 +50,24 @@ fun HomeScreen() {
                 features = listOf(
                     Feature(
                         title = "Sleep meditation",
-                        com.jetPack.meditationuijetpackcomponse.R.drawable.ic_headphones,
+                        R.drawable.ic_headphones,
                         BlueViolet1,
                         BlueViolet2,
                         BlueViolet3
                     ), Feature(
                         title = "Tips for sleeping",
-                        com.jetPack.meditationuijetpackcomponse.R.drawable.ic_headphones,
+                        R.drawable.ic_headphones,
                         LightGreen1,
                         LightGreen2,
                         LightGreen3
                     ), Feature(
                         title = "Night island",
-                        com.jetPack.meditationuijetpackcomponse.R.drawable.ic_headphones,
+                        R.drawable.ic_headphones,
                         OrangeYellow1,
                         OrangeYellow2,
                         OrangeYellow3
                     ), Feature(
-                        title = "Calming sounds",
-                        com.jetPack.meditationuijetpackcomponse.R.drawable.ic_headphones,
-                        Beige1,
-                        Beige2,
-                        Beige3
+                        title = "Calming sounds", R.drawable.ic_headphones, Beige1, Beige2, Beige3
                     )
                 )
             )
