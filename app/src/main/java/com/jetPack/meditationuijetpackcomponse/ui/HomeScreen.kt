@@ -56,7 +56,7 @@ fun HomeScreen() {
                         BlueViolet3
                     ), Feature(
                         title = "Tips for sleeping",
-                        R.drawable.ic_headphones,
+                        R.drawable.ic_camera,
                         LightGreen1,
                         LightGreen2,
                         LightGreen3
@@ -67,18 +67,18 @@ fun HomeScreen() {
                         OrangeYellow2,
                         OrangeYellow3
                     ), Feature(
-                        title = "Calming sounds", R.drawable.ic_headphones, Beige1, Beige2, Beige3
+                        title = "Calming sounds", R.drawable.ic_sound, Beige1, Beige2, Beige3
                     )
                 )
             )
         }
         BottomMenu(
             items = listOf(
-                BottomMenuContent("Home", R.drawable.ic_headphones),
-                BottomMenuContent("Meditate", R.drawable.ic_headphones),
-                BottomMenuContent("Sleep", R.drawable.ic_headphones),
-                BottomMenuContent("Music", R.drawable.ic_headphones),
-                BottomMenuContent("Profile", R.drawable.ic_headphones),
+                BottomMenuContent("Home", R.drawable.ic_home),
+                BottomMenuContent("Meditate", R.drawable.ic_meditate),
+                BottomMenuContent("Sleep", R.drawable.ic_sleep),
+                BottomMenuContent("Music", R.drawable.ic_music),
+                BottomMenuContent("Profile", R.drawable.ic_profile),
             ), modifier = Modifier.align(Alignment.BottomCenter)
         )
     }
