@@ -286,7 +286,7 @@ fun BottomMenu(
     items: List<BottomMenuContent>,
     modifier: Modifier = Modifier,
     activeHighlightColor: Color = ButtonBlue,
-    activeTextColor: Color = Color.White,
+    activeTextColor: Color = DeepBlue,
     inactiveTextColor: Color = AquaBlue,
     initialSelectedItemIndex: Int = 0
 ) {
@@ -339,7 +339,7 @@ fun BottomMenuItem(
             Icon(
                 painter = painterResource(id = item.iconId),
                 contentDescription = item.title,
-                tint = if (isSelected) activeTextColor else inactiveTextColor,
+                tint = if (isSelected) TextWhite else inactiveTextColor,
                 modifier = Modifier.size(20.dp)
             )
         }
