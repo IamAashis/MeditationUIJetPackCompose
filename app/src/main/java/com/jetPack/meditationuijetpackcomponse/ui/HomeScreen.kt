@@ -39,7 +39,7 @@ import com.jetPack.meditationuijetpackcomponse.ui.util.standardQuadFromTo
 fun HomeScreen() {
     Box(
         modifier = Modifier
-            .background(DeepBlue)
+            .background(TextWhite)
             .fillMaxSize()
     ) {
         Column {
@@ -94,8 +94,12 @@ fun GreetingSection(name: String = "Android") {
             .padding(15.dp)
     ) {
         Column(verticalArrangement = Arrangement.Center) {
-            Text(text = "Hello , $name", style = MaterialTheme.typography.h2)
-            Text(text = "We wish you have a good day ", style = MaterialTheme.typography.h2)
+            Text(text = "Hello , $name", style = MaterialTheme.typography.h2, color = DeepBlue)
+            Text(
+                text = "We wish you have a good day ",
+                style = MaterialTheme.typography.h2,
+                color = DeepBlue
+            )
         }
         Icon(
             painter = painterResource(id = com.jetPack.meditationuijetpackcomponse.R.drawable.ic_search),
@@ -171,7 +175,8 @@ fun FeatureSection(features: List<Feature>) {
         Text(
             text = "Features",
             style = MaterialTheme.typography.h1,
-            modifier = Modifier.padding(15.dp)
+            modifier = Modifier.padding(15.dp),
+            color = DeepBlue
         )
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
@@ -199,11 +204,11 @@ fun FeatureItem(feature: Feature) {
         val height = constraints.maxHeight
 
         // Medium colored path
-        val mediumColoredPoint1 = Offset(0f, height * 0.3f)
-        val mediumColoredPoint2 = Offset(width * 0.1f, height * 0.35f)
-        val mediumColoredPoint3 = Offset(width * 0.4f, height * 0.05f)
-        val mediumColoredPoint4 = Offset(width * 0.75f, height * 0.7f)
-        val mediumColoredPoint5 = Offset(width * 1.4f, -height.toFloat())
+        val mediumColoredPoint1 = Offset(0f, height * 0.5f)
+        val mediumColoredPoint2 = Offset(width * 0.2f, height * 0.45f)
+        val mediumColoredPoint3 = Offset(width * 0.6f, height * 0.07f)
+        val mediumColoredPoint4 = Offset(width * 0.95f, height * 0.9f)
+        val mediumColoredPoint5 = Offset(width * 2.4f, -height.toFloat())
 
         val mediumColoredPath = Path().apply {
             moveTo(mediumColoredPoint1.x, mediumColoredPoint1.y)
@@ -294,7 +299,7 @@ fun BottomMenu(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
-            .background(DeepBlue)
+            .background(TextWhite)
             .padding(15.dp)
     ) {
         items.forEachIndexed { index, item ->
