@@ -202,7 +202,6 @@ fun FeatureItem(feature: Feature) {
         val width = constraints.maxWidth
         val height = constraints.maxHeight
 
-        // Medium colored path
         val mediumColoredPoint1 = Offset(0f, height * 0.5f)
         val mediumColoredPoint2 = Offset(width * 0.2f, height * 0.45f)
         val mediumColoredPoint3 = Offset(width * 0.6f, height * 0.07f)
@@ -220,7 +219,6 @@ fun FeatureItem(feature: Feature) {
             close()
         }
 
-        // Light colored path
         val lightPoint1 = Offset(0f, height * 0.35f)
         val lightPoint2 = Offset(width * 0.1f, height * 0.4f)
         val lightPoint3 = Offset(width * 0.3f, height * 0.35f)
@@ -271,7 +269,6 @@ fun FeatureItem(feature: Feature) {
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .clickable {
-                        // Handle the click
                     }
                     .align(Alignment.BottomEnd)
                     .clip(RoundedCornerShape(10.dp))
