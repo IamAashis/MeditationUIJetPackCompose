@@ -13,7 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,6 +24,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jetPack.meditationuijetpackcomponse.R
+import com.jetPack.meditationuijetpackcomponse.ui.model.BottomMenuContent
 import com.jetPack.meditationuijetpackcomponse.ui.model.Feature
 import com.jetPack.meditationuijetpackcomponse.ui.theme.*
 import com.jetPack.meditationuijetpackcomponse.ui.util.standardQuadFromTo
@@ -52,22 +54,19 @@ fun HomeScreen() {
                         BlueViolet1,
                         BlueViolet2,
                         BlueViolet3
-                    ),
-                    Feature(
+                    ), Feature(
                         title = "Tips for sleeping",
                         com.jetPack.meditationuijetpackcomponse.R.drawable.ic_headphones,
                         LightGreen1,
                         LightGreen2,
                         LightGreen3
-                    ),
-                    Feature(
+                    ), Feature(
                         title = "Night island",
                         com.jetPack.meditationuijetpackcomponse.R.drawable.ic_headphones,
                         OrangeYellow1,
                         OrangeYellow2,
                         OrangeYellow3
-                    ),
-                    Feature(
+                    ), Feature(
                         title = "Calming sounds",
                         com.jetPack.meditationuijetpackcomponse.R.drawable.ic_headphones,
                         Beige1,
@@ -77,6 +76,15 @@ fun HomeScreen() {
                 )
             )
         }
+        BottomMenu(
+            items = listOf(
+                BottomMenuContent("Home", R.drawable.ic_headphones),
+                BottomMenuContent("Meditate", R.drawable.ic_headphones),
+                BottomMenuContent("Sleep", R.drawable.ic_headphones),
+                BottomMenuContent("Music", R.drawable.ic_headphones),
+                BottomMenuContent("Profile", R.drawable.ic_headphones),
+            ), modifier = Modifier.align(Alignment.BottomCenter)
+        )
     }
 }
 
@@ -134,8 +142,7 @@ fun CurrentMeditation(
     ) {
         Column {
             Text(
-                text = "Daily Thought",
-                style = MaterialTheme.typography.h2
+                text = "Daily Thought", style = MaterialTheme.typography.h2
             )
             Text(
                 text = "Meditation • 3-10 min",
@@ -232,16 +239,13 @@ fun FeatureItem(feature: Feature) {
         }
 
         Canvas(
-            modifier = Modifier
-                .fillMaxSize()
+            modifier = Modifier.fillMaxSize()
         ) {
             drawPath(
-                path = mediumColoredPath,
-                color = feature.mediumColor
+                path = mediumColoredPath, color = feature.mediumColor
             )
             drawPath(
-                path = lightColoredPath,
-                color = feature.lightColor
+                path = lightColoredPath, color = feature.lightColor
             )
         }
         Box(
@@ -261,8 +265,7 @@ fun FeatureItem(feature: Feature) {
                 tint = Color.White,
                 modifier = Modifier.align(Alignment.BottomStart)
             )
-            Text(
-                text = "Start",
+            Text(text = "Start",
                 color = TextWhite,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
@@ -273,9 +276,77 @@ fun FeatureItem(feature: Feature) {
                     .align(Alignment.BottomEnd)
                     .clip(RoundedCornerShape(10.dp))
                     .background(ButtonBlue)
-                    .padding(vertical = 6.dp, horizontal = 15.dp)
-            )
+                    .padding(vertical = 6.dp, horizontal = 15.dp))
         }
     }
 }
+
+@Composable
+fun BottomMenu(
+    items: List<BottomMenuContent>,
+    modifier: Modifier = Modifier,
+    activeHighlightColor: Color = ButtonBlue,
+    activeTextColor: Color = Color.White,
+    inactiveTextColor: Color = AquaBlue,
+    initialSelectedItemIndex: Int = 0
+) {
+    var selectedItemIndex by remember {
+        mutableStateOf(initialSelectedItemIndex)
+    }
+    Row(
+        horizontalArrangement = Arrangement.SpaceAround,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .background(DeepBlue)
+            .padding(15.dp)
+    ) {
+        items.forEachIndexed { index, item ->
+            BottomMenuItem(
+                item = item,
+                isSelected = index == selectedItemIndex,
+                activeHighlightColor = activeHighlightColor,
+                activeTextColor = activeTextColor,
+                inactiveTextColor = inactiveTextColor
+            ) {
+                selectedItemIndex = index
+            }
+        }
+    }
+}
+
+@Composable
+fun BottomMenuItem(
+    item: BottomMenuContent,
+    isSelected: Boolean = false,
+    activeHighlightColor: Color = ButtonBlue,
+    activeTextColor: Color = Color.White,
+    inactiveTextColor: Color = AquaBlue,
+    onItemClick: () -> Unit
+) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.clickable {
+            onItemClick()
+        }) {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .clip(RoundedCornerShape(10.dp))
+                .background(if (isSelected) activeHighlightColor else Color.Transparent)
+                .padding(10.dp)
+        ) {
+            Icon(
+                painter = painterResource(id = item.iconId),
+                contentDescription = item.title,
+                tint = if (isSelected) activeTextColor else inactiveTextColor,
+                modifier = Modifier.size(20.dp)
+            )
+        }
+        Text(
+            text = item.title, color = if (isSelected) activeTextColor else inactiveTextColor
+        )
+    }
+}
+
 
